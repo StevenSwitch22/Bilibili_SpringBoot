@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>em</title>
+</head>
+
+<link rel="stylesheet" href="element-ui/index.css">
+<script src="element-ui/index.js"></script>
+<script src="./js/axios.min.js"></script>
+<script src="./js/vue.js"></script>
+
+<body>
+<h1 align="center">Employee message show</h1>
+<div id="app">
+    <el-table :data="tableData" style="width: 100%" stripe border>
+        <el-table-column prop="name" label="姓名" align="center" min-width="20%"></el-table-column>
+        <el-table-column prop="age" label="年龄" align="center" min-width="20%"></el-table-column>
+        <el-table-column label="图像" align="center" min-width="20%">
+            <template slot-scope="scope">
+                <el-image :src="scope.row.image" style="width: 100px; height: 100px"></el-image>
+            </template>
+        </el-table-column>
+        <el-table-column prop="gender" label="性别" align="center" min-width="20%"></el-table-column>
+        <el-table-column prop="job" label="职位" align="center" min-width="20%"></el-table-column>
+    </el-table>
+</div>
+</body>
+
+<style>
+    .el-table .warning-row {
+        background: oldlace;
+    }
+    .el-table .success-row {
+        background: #f0f9eb;
+    }
+</style>
+
+<script>
+    new Vue({
+        el: '#app',
+        data() {
+            return {
+                tableData: []
+            }
+        },
+        mounted() {
+            axios.get('/listEmp').then(response => {
+                if (response.data.code) {
+                    this.tableData = response.data.data;
+                }
+            });
+        },
+        methods: {
+        }
+    });
+</script>
+</html>
