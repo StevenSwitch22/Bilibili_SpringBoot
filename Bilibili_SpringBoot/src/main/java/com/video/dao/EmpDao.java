@@ -12,7 +12,7 @@ import java.util.List;
  * 时间：16:10
  */
 public interface EmpDao {
-    // 在接口中定义一个方法，获取员工信息
+    // 在接口中定义一个方法，获取每一个员工信息
     // IDEA 快捷键：alt + 箭头键 切换打开的文件
     // Copilot 快捷键：ctrl + 箭头键 同意部分代码
     public List<Emp> listEmp();

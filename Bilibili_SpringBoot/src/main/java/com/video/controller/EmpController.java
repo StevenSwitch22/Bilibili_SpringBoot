@@ -2,7 +2,10 @@ package com.video.controller;
 
 import com.video.pojo.Emp;
 import com.video.pojo.Result;
+import com.video.service.impl.EmpServiceImpl;
 import com.video.utils.XMLParserUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,10 +22,24 @@ import java.util.List;
 // Controller方法处于前端和后端的入口处和出口处
 // 用于接收前端请求 向前端返回后端数据
 public class EmpController {
+    // 那么当前程序需要其他程序的对象从哪里获取?
+    @Autowired  // 通过这个注解来告诉Spring容器，我需要EmpServiceImpl对象
+    private EmpServiceImpl empService;   // 将new EmpServiceImpl()删掉，让容器来提供对象，
+                                    // 这里只需要给别人提供对象的程序声明容器
 
     // 这里定义Result类型的方法 目的在于返回一个统一的结果给前端
     @RequestMapping("/listEmp")
-    // 前端通过地址访问到后端 后端通过这个地址给前端返回数据
+    public Result listEmp() {
+        // 这里需要得到 Service 层处理完后端数据
+        List<Emp> empList = empService.listEmp();
+
+        // 3. 向前端响应数据
+        // 这里只需要把数据装到Result不就行了 那么return应该返回JSON数据
+        return Result.success(empList);
+    }
+
+
+    /*// 前端通过地址访问到后端 后端通过这个地址给前端返回数据
     public Result list() {
         // 1. 加载并解析emp.xml 文件 把文件中的数据读取到对象当中
 //        String file = "D:\\Java\\Bilibili_SpringBoot\\src\\main\\resources\\emp.xml";
@@ -52,10 +69,5 @@ public class EmpController {
             } else {
                 emp.setJob("工人");
             }
-        });
-
-        // 3. 向前端响应数据
-        // 这里只需要把数据装到Result不就行了 那么return应该返回JSON数据
-        return Result.success(empList);
-    }
+        });*/
 }
