@@ -145,5 +145,7 @@ select min(entry_time) as '最老员工入职日期' from colleague;
 select max(entry_time) as '最新员工入职日期' from colleague;
 
 -- 场景4：IT部门需要了解当前员工ID的平均值来优化编号分配策略
+select avg(id) as '员工ID平均值' from colleague;
 
--- 场景5：系统管理员在进行数据备份和迁移时，需要验证员工ID总和来确保数据完整性
+-- 场景5：系统需要验证员工ID的总和来确保数据完整
+select sum(id) as '员工ID总和' from colleague;
