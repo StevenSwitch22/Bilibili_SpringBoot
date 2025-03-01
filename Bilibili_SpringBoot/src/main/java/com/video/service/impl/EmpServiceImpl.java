@@ -6,6 +6,7 @@ import com.video.pojo.Emp;
 import com.video.service.EmpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ import java.util.List;
  * 日期：2025/2/27
  * 时间：16:43
  */
-@Component
+@Service
 public class EmpServiceImpl implements EmpService {
     @Autowired
     private EmpDao empDao;

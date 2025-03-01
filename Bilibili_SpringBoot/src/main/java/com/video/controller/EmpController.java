@@ -35,6 +35,7 @@ public class EmpController {
 
         // 3. 向前端响应数据
         // 这里只需要把数据装到Result不就行了 那么return应该返回JSON数据
+        System.out.println("@Component衍生注解显示这个：" + empList);
         return Result.success(empList);
     }
 

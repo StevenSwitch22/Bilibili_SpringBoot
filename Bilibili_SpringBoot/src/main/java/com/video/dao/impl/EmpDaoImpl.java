@@ -5,6 +5,7 @@ import com.video.dao.EmpDao;
 import com.video.pojo.Emp;
 import com.video.utils.XMLParserUtils;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -15,7 +16,7 @@ import java.util.List;
  * 日期：2025/2/27
  * 时间：16:35
  */
-@Component
+@Repository
 public class EmpDaoImpl implements EmpDao {
     @Override
     public List<Emp> listEmp() {
