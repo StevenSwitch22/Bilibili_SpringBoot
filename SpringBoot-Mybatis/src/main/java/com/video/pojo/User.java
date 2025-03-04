@@ -1,5 +1,9 @@
 package com.video.pojo;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /**
  * 类名：
  *
@@ -7,6 +11,9 @@ package com.video.pojo;
  * 日期：2025/3/2
  * 时间：17:36
  */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class User  {
     private Integer id;
     private String name;
@@ -14,7 +21,7 @@ public class User  {
     private Short gender;
     private String phone;
 
-    public User() {
+    /*public User() {
     }
 
     public User(Integer id, String name, Short age, Short gender, String phone) {
@@ -74,5 +81,5 @@ public class User  {
                 ", gender=" + gender +
                 ", phone='" + phone + '\'' +
                 '}';
-    }
+    }*/
 }

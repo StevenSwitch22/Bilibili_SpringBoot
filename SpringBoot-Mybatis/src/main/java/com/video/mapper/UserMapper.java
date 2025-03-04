@@ -15,10 +15,12 @@ import java.util.List;
  */
 @Mapper  // 运行时，会自动生成该接口的实现类对象（），并将该对象交给IOC容器管理
 public interface UserMapper {
-    @Select("select * from user;")
+    @Select("select * from user")
     // 考虑返回值类型为什么是List<User>，而不是其他类型
     public List<User> list();
 }
+
+// 那么使用@Select注解接收的数据就自动封装到下面定义的的User类中吗？
 
 // 我想看看数组存储对象的结果和集合存储对象的结果有什么不同，两者长什么样子？
 // 长什么样子好像也就是[] {}的区别，其中的都是 User{} 这样的内容
