@@ -1,5 +1,14 @@
 package com.video.Service.impl;
 
+import com.video.Service.DeptService;
+import com.video.mapper.DeptMapper;
+import com.video.pojo.Dept;
+import com.video.pojo.Result;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 /**
  * 类名：
  *
@@ -7,5 +16,21 @@ package com.video.Service.impl;
  * 日期：2025/3/6
  * 时间：18:08
  */
-public class DeptServiceImpl {
+@Service
+public class DeptServiceImpl implements DeptService {
+    @Autowired
+    private DeptMapper deptMapper;
+    @Override
+    public List<Dept> list() {
+        //   Service 层肯定要向 Mapper 层要数据
+        List<Dept> list = deptMapper.list();
+        System.out.println("Service list = " + list);
+        return list;
+    }
+
+    @Override
+    public void delete(Integer id) {
+        //   Service 层接收到ID后，再把 id 传给 Mapper 层
+        deptMapper.delete(id);
+    }
 }
