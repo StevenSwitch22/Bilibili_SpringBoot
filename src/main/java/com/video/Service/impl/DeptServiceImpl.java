@@ -25,8 +25,10 @@ public class DeptServiceImpl implements DeptService {
     @Override
     public List<Dept> list() {
         //   Service 层肯定要向 Mapper 层要数据
+        log.info("正在查询数据，正在给 Mapper 层要数据");
         List<Dept> list = deptMapper.list();
-        log.info("这里是 Mapper 层返回给 Service 层的数据：");
+
+        log.info("正在查询数据，Mapper 层正在返回数据");
         System.out.println("Service list = " + list);
         return list;
     }
@@ -38,11 +40,10 @@ public class DeptServiceImpl implements DeptService {
     }
 
     @Override
-    public void insert(String name) {
-        //  Service 层把拿到的传给 Mapper 层
-        deptMapper.insert(name);
-
-        log.info("此时正在Service --> Mapper：name：", name);
-        //  此时也不用考虑返回给 Controller 层什么
+    public void insert(Dept dept) {
+        //  这里接收 Control 层的数据，传给 Mapper 层
+        log.info("现在正在添加数据，正在给 Mapper 层传递name：{}", dept.getName());
+        deptMapper.insert(dept);
+        log.info("现在数据正在从 Mapper 层传回来：");
     }
 }

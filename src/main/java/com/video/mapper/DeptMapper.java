@@ -2,6 +2,7 @@ package com.video.mapper;
 
 import com.video.pojo.Dept;
 import com.video.pojo.Result;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -26,5 +27,5 @@ public interface DeptMapper {
     void delete(Integer id);
 
     @Insert("insert into dept(name, create_time, update_time) values (#{name}, now(), now())")
-    void insert(String name);
+    void insert(Dept dept);
 }

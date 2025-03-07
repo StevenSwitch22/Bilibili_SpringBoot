@@ -19,5 +19,5 @@ public interface DeptService {
 
     void delete(Integer id);
 
-    void insert(String name);
+    void insert(Dept dept);
 }
