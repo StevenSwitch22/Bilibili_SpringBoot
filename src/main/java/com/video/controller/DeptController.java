@@ -5,10 +5,7 @@ import com.video.pojo.Dept;
 import com.video.pojo.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -41,6 +38,7 @@ public class DeptController {
 
 
         //   这个时候从 Service 层获取的是数据，正好封装到 Result 里面
+        log.info("这里是 Service 层返回给 Controller 层的数据：");
         System.out.println("list = " + list);
         return new Result(1, "success", list);
     }
@@ -52,5 +50,19 @@ public class DeptController {
         //   此时把前端获取到的 id 传给 Service 层
         deptService.delete(id);
         return Result.success();
+    }
+
+
+    //   该方法处理新增部门
+    @PostMapping("/depts")
+    public Result insert(String name) {
+        //   接受前端要添加哪个部门
+
+        //   把拿过来的名字要传给 Service 层
+        deptService.insert(name);
+
+        //   让过程更加清晰可见，输入日志
+        log.info("此时正在Controller --> Service：name：", name);
+        return new Result(1, "添加成功", null);
     }
 }

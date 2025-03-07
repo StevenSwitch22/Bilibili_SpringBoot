@@ -18,4 +18,6 @@ public interface DeptService {
     List<Dept> list();  //  这里肯定是把返回值类型定义为 Result，
 
     void delete(Integer id);
+
+    void insert(String name);
 }
