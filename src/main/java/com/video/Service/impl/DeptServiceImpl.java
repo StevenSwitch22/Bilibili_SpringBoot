@@ -42,8 +42,27 @@ public class DeptServiceImpl implements DeptService {
     @Override
     public void insert(Dept dept) {
         //  这里接收 Control 层的数据，传给 Mapper 层
-        log.info("现在正在添加数据，正在给 Mapper 层传递name：{}", dept.getName());
+        log.info("现在正在添加数据，正在给 Mapper 层传递name：{}", dept);
         deptMapper.insert(dept);
         log.info("现在数据正在从 Mapper 层传回来：");
+    }
+
+    @Override
+    public void update(Dept dept) {
+        //   这里接收 上层的数据
+        log.info("正在修改数据，在给 Mapper 层传递数据：{}", dept);
+        deptMapper.update(dept);
+
+        log.info("正在修改数据，Service 层正返回数据：{}", dept);
+    }
+
+    @Override
+    public Dept show(Integer id) {
+        //  接收上层传递过来的数据
+        log.info("正在回显数据，在给 Mapper 层传递数据：{}", id);
+        Dept show = deptMapper.show(id);
+
+        log.info("正在回显数据，Service 层正返回数据：{}", show);
+        return show;
     }
 }

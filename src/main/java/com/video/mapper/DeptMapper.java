@@ -3,10 +3,7 @@ package com.video.mapper;
 import com.video.pojo.Dept;
 import com.video.pojo.Result;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -28,4 +25,10 @@ public interface DeptMapper {
 
     @Insert("insert into dept(name, create_time, update_time) values (#{name}, now(), now())")
     void insert(Dept dept);
+
+    @Update("update dept set name = #{name} where id = #{id}")
+    void update(Dept dept);
+
+    @Select("select id, name, create_time, update_time from dept where id = #{id}")
+    Dept show(Integer id);
 }
