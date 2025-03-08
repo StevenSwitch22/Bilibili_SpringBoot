@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -26,7 +27,7 @@ public class EmpServiceImpl implements EmpService {
     @Autowired
     private EmpMapper empMapper;
     @Override
-    public PageBean pageList(Integer page, Integer pageSize) {
+    public PageBean pageList(String name, Integer gender, LocalDate begin, LocalDate end, Integer page, Integer pageSize) {
         //  使用 pageHelper 第一步，传入数据
         PageHelper.startPage(page, pageSize);
 
@@ -35,7 +36,12 @@ public class EmpServiceImpl implements EmpService {
         log.info("正在分页查询数据，在给 Mapper 层传递数据：{}：{}", page, pageSize);
         //  查到的数据要封装到 pageBean这个类里面
 //        Integer count = empMapper.count();
-        List<Emp> empList = empMapper.pageList();
+
+        //   我猜测要执行两步查询，先查询“指定条件”的结果；再根据得到的结果分页查询
+        //   OK，立马开干。先执行“指定条件”的查询结果
+
+        //  OK， 此时已经得到带有条件的查询结果。那么就根据这个结果再执行分页查询
+        List<Emp> empList = empMapper.pageList(name, gender, begin, end);
 
         Page<Emp> p = (Page<Emp>) empList;
 

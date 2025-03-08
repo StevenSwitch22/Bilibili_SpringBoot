@@ -3,6 +3,8 @@ package com.video.Service;
 import com.video.pojo.PageBean;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+
 /**
  * 类名：
  *
@@ -12,5 +14,5 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface EmpService {
-    PageBean pageList(Integer page, Integer pageSize);
+    PageBean pageList(String name, Integer gender, LocalDate begin, LocalDate end, Integer page, Integer pageSize);
 }

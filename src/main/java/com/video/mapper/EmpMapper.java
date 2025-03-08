@@ -5,6 +5,7 @@ import com.video.pojo.PageBean;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import java.time.LocalDate;
 import java.util.List;
 
 /**
@@ -22,6 +23,7 @@ public interface EmpMapper {
     @Select("select * from emp limit #{page}, #{pageSize}")  //  #{page}, #{pageSize}
     List<Emp> pageList(Integer page, Integer pageSize);*/
 
-    @Select("select * from emp")
-    List<Emp> pageList();
+//    @Select("select * from emp")
+
+    List<Emp> pageList(String name, Integer gender, LocalDate begin, LocalDate end);
 }
