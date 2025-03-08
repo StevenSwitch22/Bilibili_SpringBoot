@@ -27,7 +27,8 @@ public class EmpController {
 
     //   这里是员工列表查询
     @GetMapping("/emps")
-    public Result pageList(@RequestParam(defaultValue = "1") Integer page,
+    public Result pageList(String name, Integer gender, LocalDate begin, LocalDate end,
+                           @RequestParam(defaultValue = "1") Integer page,
                            @RequestParam(defaultValue = "10") Integer pageSize) {
         log.info("正在分页查询数据，在给 Service 层传递数据：{}, {}", page, pageSize);
         PageBean pageBean = empService.pageList(page, pageSize);

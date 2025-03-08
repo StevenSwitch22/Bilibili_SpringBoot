@@ -16,9 +16,12 @@ import java.util.List;
  */
 @Mapper
 public interface EmpMapper {
-    @Select("select count(*) from emp")
+    /*@Select("select count(*) from emp")
     Integer count();
 
     @Select("select * from emp limit #{page}, #{pageSize}")  //  #{page}, #{pageSize}
-    List<Emp> pageList(Integer page, Integer pageSize);
+    List<Emp> pageList(Integer page, Integer pageSize);*/
+
+    @Select("select * from emp")
+    List<Emp> pageList();
 }
