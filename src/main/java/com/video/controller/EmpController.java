@@ -6,6 +6,7 @@ import com.video.pojo.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
@@ -26,11 +27,12 @@ public class EmpController {
 
     //   这里是员工列表查询
     @GetMapping("/emps")
-    public Result pageList(String name, Integer gender, LocalDate begin, LocalDate end, Integer page, Integer pageSize) {
-        log.info("正在查询数据，在给 Service 层传递数据：{}");
+    public Result pageList(@RequestParam(defaultValue = "1") Integer page,
+                           @RequestParam(defaultValue = "10") Integer pageSize) {
+        log.info("正在分页查询数据，在给 Service 层传递数据：{}, {}", page, pageSize);
         PageBean pageBean = empService.pageList(page, pageSize);
 
-        log.info("正在查询数据，Controller 层接收到数据：{}", pageBean);
+        log.info("正在分页查询数据，Controller 层接收到数据：{}", pageBean);
         return new Result(1, "查询成功", pageBean);
     }
 }
